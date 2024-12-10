@@ -1,0 +1,150 @@
+<nav class="navbar navbar-expand p-4">
+  <div class="container-fluid">
+    <div class="col-2">
+      <img src="assets/logo-bancoestado.png" alt="" width="150">
+    </div>
+    <div class="col-5">
+      <div class="container-fluid">
+        <a class="navbar-brand p-2 text-white fs-6 fw-bold" href="#">Inicio</a>
+        <a class="navbar-brand p-2 text-white fs-6 fw-bold" href="#">Productos</a>
+        <a class="navbar-brand p-2 text-white fs-6 fw-bold" href="#">Simuladores</a>
+        <a class="navbar-brand p-2 text-white fs-6 fw-bold" href="#">Beneficios</a>
+        <a class="navbar-brand p-2 text-white fs-6 fw-bold" href="#">Servicios</a>
+        <a class="navbar-brand p-2 text-white fs-6 fw-bold" href="#">App BancoEstado</a>
+        <a class="navbar-brand p-2 text-white fs-6 fw-bold" href="#">Red de Atencion</a>
+      </div>
+    </div>
+    <div class="col-1"></div>
+    <div class="col-4">
+      <button id="navbtn" class="btn text-white">
+        Hazte cliente
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid p-5">
+  <div class="row">
+    
+    <div class="col-4">
+      <div id="fondo" class="card p-4">
+        <h3>Tus Productos</h3>
+        <div class="card-body">
+          <div id="saldo" class="container p-4">
+            <div class="row">
+              <div class="col-4">
+                <h6>CuentaRUT</h6>
+              </div>
+              <div class="col-8">
+                <h6>0001234567</h6>
+              </div>
+            </div>
+            <h2 class="pt-1">${{Saldo}}</h2>
+          </div>
+          <div class="container pt-4">
+            <div class="col-12">
+              <ul class="list-group">
+                <h5>Ultimos Movimientos</h5>
+                @for (item of transferenciaList; track $index) { 
+                <li class="list-group-item pt-3">
+                  <div class="container-fluid">
+                    <div class="row">
+                      <div class="col-6">
+                          <h6>{{item.rut}}</h6>
+                          <h5>{{item.nombre}}</h5>
+                      </div>
+                      <div class="col-6 text-end">
+                          <h6>{{item.email}}</h6>
+                          <h5>${{item.monto}}</h5>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              }
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-1"></div>
+
+    <div class="col-6">
+      <div id="fondo" class="card">
+        <div class="card-body p-4">
+          <form [formGroup]="transferenciaForm">
+            <div class="col-12">
+              <label for=""></label>
+              <input type="text" class="form-control" [hidden]="true" formControlName="id" placeholder="Ingrese el ID"> 
+            </div>
+            <div class="col-12">
+              <label for="">Numero de cuenta</label>
+              <div class="container pb-4 pt-2">
+                <input type="text" class="form-control" formControlName="rut">
+                <div class="text-danger">
+                  @if (transferenciaForm.controls['rut'].touched) 
+                  {
+                    @if (transferenciaForm.controls['rut'].errors?.['required']) 
+                    {
+                      <span>DEBES INGRESAR EL RUT</span>
+                    }
+                  }
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-12">
+              <label for="">Nombre del propietario</label>
+              <div class="container pb-4 pt-2">
+                <input type="text" class="form-control" formControlName="nombre">
+                <div class="text-danger">
+                    @if (transferenciaForm.controls['nombre'].touched) 
+                    {
+                      @if (transferenciaForm.controls['nombre'].errors?.['required']) 
+                      {
+                        <span>DEBES INGRESAR EL NOMBRE</span>
+                      }
+                    }
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="">Correo (Opcional)</label>
+              <div class="container pb-4 pt-2">
+                <input type="text" class="form-control" formControlName="email">
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="">Monto</label>
+              <div class="container pb-4 pt-2">
+                <input type="text" class="form-control" formControlName="monto">
+                <div class="text-danger">
+                    @if (transferenciaForm.controls['monto'].touched) 
+                    {
+                      @if (transferenciaForm.controls['monto'].errors?.['required']) 
+                      {
+                        <span>DEBES INGRESAR UN MONTO DE 4 DIGITOS</span>
+                      }
+                    }
+                </div>
+              </div>
+            </div>          
+              
+            <div class="row pt-3">
+              <div class="col-12 text-center">
+                <button class="btn btn-primary" (click)="onSave()">Transferir</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  
+    
+  

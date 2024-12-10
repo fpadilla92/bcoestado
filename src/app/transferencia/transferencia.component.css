@@ -1,0 +1,28 @@
+.navbar{
+    background-color: orange;
+}
+
+#navbtn{
+    border-color: white;
+    border-radius: 40px;
+    font-size: 150%;
+    font-weight: bold;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-left: 10%;
+}
+
+#fondo{
+    background-color: gainsboro;
+
+}
+
+#saldo{
+    background-color: white;
+    border-radius: 30px;
+}
+
+label{
+    color: darkslateblue;
+    font-weight: bold;
+}
